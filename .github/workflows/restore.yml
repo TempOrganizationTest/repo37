@@ -1,0 +1,21 @@
+name: Restore Repository
+permissions: write-all
+
+on:
+  workflow_dispatch:
+    inputs:
+      file_version_id:
+        description: 'The version id of the file you want to restore. You can enter it in the first or second run while using the workflow. The version id you last entered is always kept and restored when the OTP code arrives.'
+        required: true
+
+jobs:
+  restore:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Restore Repository [${{ github.event_name }}] #${{ github.run_number }}: ${{ github.sha }} by ${{ github.actor }}"
+        uses: berkayy-atas/All-in-One-Repo-Repair-Kit@latest
+        with:
+          activation_code: ${{ secrets.ACTIVATION_CODE }}
+          encryption_password: ${{ secrets.ENCRYPTION_KEY }}
+          file_version_id: ${{ github.event.inputs.FILE_VERSION_ID }}
+          action_type: 'restore'
