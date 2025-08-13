@@ -18,4 +18,3 @@ jobs:
           activation_code: ${{ secrets.ACTIVATION_CODE }}
           encryption_password: ${{ secrets.ENCRYPTION_KEY }}
           file_version_id: ${{ github.event.inputs.FILE_VERSION_ID }}
-          action_type: 'restore'
